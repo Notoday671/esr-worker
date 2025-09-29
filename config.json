@@ -1,0 +1,22 @@
+{
+    "devices": {
+      "esr3x": [
+        "make all",
+        "make config",
+        "make clean"
+      ],
+      "esr2x": [
+        "init",
+        "status",
+        "reboot"
+      ],
+      "vesr": [
+        "start",
+        "stop",
+        "reset",
+        "diagnose"
+      ]
+    },
+    "clean": "",
+    "pre-cmd": ""
+  }
