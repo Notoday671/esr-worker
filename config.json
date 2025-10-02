@@ -17,8 +17,9 @@
         "diagnose"
       ], 
       "check": [
-        "ls",
+        "ls -la",
         "ps",
+        "ps -aux | grep tel",
         "pwd"
       ]
     },
