@@ -1,0 +1,29 @@
+{
+    "devices": { 
+      "esr3x": [
+        "make all",
+        "make config",
+        "make clean"
+      ],
+      "esr2x": [
+        "init",
+        "status",
+        "reboot"
+      ],
+      "vesr": [
+        "start",
+        "stop",
+        "reset",
+        "diagnose"
+      ], 
+      "check": [
+        "ls -la",
+        "ps",
+        "ps -aux | grep tel",
+        "pwd"
+      ]
+    },
+    "clean": "",
+    "pre-cmd": "",
+    "validator" : ""
+  }
