@@ -45,13 +45,8 @@ func handlerUserInput(cfg *ConfigWorker) {
 				return
 			}
 
-			// Выводим команды
-			fmt.Printf("Команды для устройства '%s':\n", cfg.device)
-			for _, command := range commands {
-				fmt.Printf("  - %s\n", command)
-			}
+			// испольняем команды
 			executeCommands(commands)
-			fmt.Println("---------------------")
 		},
 	}
 
@@ -91,17 +86,34 @@ func getCommandsForDevice(config *Config, deviceName string) ([]string, bool) {
 func executeCommands(commands []string) {
 	for _, command := range commands {
 		cmd := exec.Command(command)
-		cmd.Run()
 		// Выполнение команды и получение её вывода
 		output, err := cmd.Output()
 		if err != nil {
 			fmt.Printf("Ошибка выполнения команды: %v\n", err)
 			return
 		}
-		fmt.Println("Вывод команды ls -l:")
+		fmt.Println("Вывод команды", command)
 		fmt.Println(string(output))
 	}
 }
+
+// func executeCommands(commands []string) {
+// 	for _, command := range commands {
+// 		parts := strings.Fields(command) // разбиваем команду на части
+// 		if len(parts) == 0 {
+// 			continue
+// 		}
+
+// 		cmd := exec.Command(parts[0], parts[1:]...) // правильно разбираем команду и аргументы
+// 		output, err := cmd.Output() // используем Output(), чтобы получить вывод
+// 		if err != nil {
+// 			fmt.Printf("Ошибка выполнения команды '%s': %v\n", command, err)
+// 			continue // не завершаем весь цикл, а просто переходим к следующей команде
+// 		}
+// 		fmt.Printf("Вывод команды '%s':\n", command)
+// 		fmt.Println(string(output))
+// 	}
+// }
 
 func main() {
 	var cfg ConfigWorker
