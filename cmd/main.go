@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/Notoday671/esr-worker.git/internal/bashwork"
 	"github.com/spf13/cobra"
 )
 
@@ -45,7 +46,7 @@ func handlerUserInput(cfg *ConfigWorker) {
 			}
 
 			// испольняем команды
-			executeCommands(commands)
+			bashwork.ExecuteCommands(commands)
 		},
 	}
 
