@@ -1,29 +1,22 @@
 {
     "devices": { 
       "esr3x": [
+        "make config-esr3x",
         "make all",
-        "make config",
-        "make clean"
+        ""
       ],
       "esr2x": [
-        "init",
-        "status",
-        "reboot"
+        "make config-esr2x",
+        "make all",
+        ""
       ],
       "vesr": [
-        "start",
-        "stop",
-        "reset",
-        "diagnose"
-      ], 
-      "check": [
-        "ls -la",
-        "ps",
-        "ps -aux | grep tel",
-        "pwd"
+        "make config-vesr-x86",
+        "make all",
+        ""
       ]
     },
-    "clean": "",
-    "pre-cmd": "",
-    "validator" : ""
+    "clean": ["make unconfig", "make clean-all"],
+    "pre-cmd": ["", "", ""],
+    "validator" : "esr-validator"
   }
