@@ -1,5 +1,5 @@
 {
-    "devices": {
+    "devices": { 
       "esr3x": [
         "make all",
         "make config",
@@ -15,8 +15,14 @@
         "stop",
         "reset",
         "diagnose"
+      ], 
+      "check": [
+        "ls",
+        "ps",
+        "pwd"
       ]
     },
     "clean": "",
-    "pre-cmd": ""
+    "pre-cmd": "",
+    "validator" : ""
   }

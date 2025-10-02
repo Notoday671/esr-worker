@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"os/exec"
 
 	"github.com/spf13/cobra"
 )
@@ -24,7 +25,7 @@ func handlerUserInput(cfg *ConfigWorker) {
 		Use:   "esr-worker",
 		Short: "Краткое описание",
 		Long:  `Полное описание команды`,
-		Run: func(cmd *cobra.Command, args []string) {
+		Run: func(cmd *cobra.Command, args []string) { //нахуй не нужно
 			fmt.Printf("Path JSON Config: %s\n", cfg.pathJsonCfg)
 			fmt.Printf("Device: %s\n", cfg.device)
 			fmt.Printf("Git Branch: %s\n", cfg.gitBranch)
@@ -49,12 +50,14 @@ func handlerUserInput(cfg *ConfigWorker) {
 			for _, command := range commands {
 				fmt.Printf("  - %s\n", command)
 			}
+			executeCommands(commands)
+			fmt.Println("---------------------")
 		},
 	}
 
-	rootCmd.Flags().StringVarP(&cfg.pathJsonCfg, "path", "p", "", "Путь к JSON конфигу")
+	rootCmd.Flags().StringVarP(&cfg.pathJsonCfg, "path", "p", ".", "Путь к JSON конфигу")
 	rootCmd.Flags().StringVarP(&cfg.device, "device", "d", "", "Устройство для установки")
-	rootCmd.Flags().StringVarP(&cfg.gitBranch, "branch", "b", "main", "Git ветка")
+	rootCmd.Flags().StringVarP(&cfg.gitBranch, "branch", "b", "", "Git ветка")
 	rootCmd.Flags().BoolVarP(&cfg.clean, "clean", "c", false, "Очистить перед запуском")
 
 	// Пометим флаг обязательным
@@ -83,6 +86,21 @@ func parseConfig(path string) (*Config, error) {
 func getCommandsForDevice(config *Config, deviceName string) ([]string, bool) {
 	commands, exists := config.Devices[deviceName]
 	return commands, exists
+}
+
+func executeCommands(commands []string) {
+	for _, command := range commands {
+		cmd := exec.Command(command)
+		cmd.Run()
+		// Выполнение команды и получение её вывода
+		output, err := cmd.Output()
+		if err != nil {
+			fmt.Printf("Ошибка выполнения команды: %v\n", err)
+			return
+		}
+		fmt.Println("Вывод команды ls -l:")
+		fmt.Println(string(output))
+	}
 }
 
 func main() {
