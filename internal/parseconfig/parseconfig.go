@@ -28,3 +28,7 @@ func GetCommandsForDevice(config *Config, deviceName string) ([]string, bool) {
 	commands, exists := config.Devices[deviceName]
 	return commands, exists
 }
+
+func ParseESRbaseConfig() {
+
+}

@@ -19,17 +19,15 @@ func HandlerUserInput(cfg *ConfigWorker) {
 		Short: "Краткое описание",
 		Long:  `Полное описание команды`,
 		Run: func(cmd *cobra.Command, args []string) { //нахуй не нужно
-			fmt.Printf("Path JSON Config: %s\n", cfg.pathJsonCfg)
-			fmt.Printf("Device: %s\n", cfg.device)
-			fmt.Printf("Git Branch: %s\n", cfg.gitBranch)
-			fmt.Printf("Clean: %t\n", cfg.clean)
+			fmt.Printf("Device: %s\n", cfg.Device)
+			fmt.Printf("Git Branch: %s\n", cfg.GitBranch)
+			fmt.Printf("Clean: %t\n", cfg.Clean)
 		},
 	}
 
-	rootCmd.Flags().StringVarP(&cfg.pathJsonCfg, "path", "p", ".", "Путь к JSON конфигу")
-	rootCmd.Flags().StringVarP(&cfg.device, "device", "d", "", "Устройство для установки")
-	rootCmd.Flags().StringVarP(&cfg.gitBranch, "branch", "b", "", "Git ветка")
-	rootCmd.Flags().BoolVarP(&cfg.clean, "clean", "c", false, "Очистить перед запуском")
+	rootCmd.Flags().StringVarP(&cfg.Device, "device", "d", "", "Устройство для установки")
+	rootCmd.Flags().StringVarP(&cfg.GitBranch, "branch", "b", "", "Git ветка")
+	rootCmd.Flags().BoolVarP(&cfg.Clean, "clean", "c", false, "Очистить перед запуском")
 
 	// Пометим флаг обязательным
 	rootCmd.MarkFlagRequired("path")
