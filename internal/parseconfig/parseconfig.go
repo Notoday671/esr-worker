@@ -29,6 +29,11 @@ func GetCommandsForDevice(config *Config, deviceName string) ([]string, bool) {
 	return commands, exists
 }
 
+/*
+timofey.iuzyak@timofeyIuzyak:~/esr-base$ git remote -v
+origin  git@gitlab2.eltex.loc:esr-routers/esr-base.git (fetch)
+*/
+
 func ParseESRbaseConfig() {
 
 }
